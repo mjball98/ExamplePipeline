@@ -1,0 +1,60 @@
+/*
+ * This is an external stylesheet. You can specify styles here for you elements - AND * you can reuse this stylesheet across multiple HTML documents.
+ *
+ * When we apply styles to our web elements, we use CSS selectors. There are various * ways to select elements. You can do so by: tag name, id name (IDs are unique ways * of locating web elements), class names (you can specify classes and group elements * together use those classes).
+ */
+
+ input, button{
+    /*
+     * px, em, or %?
+     * 
+     * px is a static measurement. It doesn't change based on the elements relative * to it. In essence, the size is fixed.
+
+     * em and % are relative measurements. em specifies that an element's size, for * instance, should be relative to the font size being used. % is also relative, * but it specifies that the size of an element is relative to the parent       * element's size.
+     */
+    border-radius: 0.5em;
+    width: 20em;
+    height: 3em;
+}
+
+button{
+    background-color: rgb(71, 212, 71);
+}
+
+/*
+ * In order to select an element(s) by its class, use the class preceded by a "."
+ */
+.container{
+   display: flex;
+   flex-direction: row;
+   column-gap: 7em;
+   margin-left: 12em;
+   margin-top: 13em;
+}
+
+/*
+ * In order to select an element by its id, use the id name preceded by the "#"     * symbol.
+ */
+#formDiv{
+   text-align: center;
+}
+
+#form{
+   display: flex;
+   flex-direction: column;
+   border-radius: 0.5em;
+   border-style: groove;
+   border-width: 0.5px;
+   padding: 3em;
+   background-color: white;
+}
+
+#message{
+    width: 30em;
+    height: 10em;
+    text-align: center;
+}
+
+h2{
+    color: orange
+}

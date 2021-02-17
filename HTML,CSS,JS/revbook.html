@@ -1,0 +1,37 @@
+<!--We should always start with our document type declaration. -->
+<!DOCTYPE html>
+
+<!--HTML is markup language that uses tags to denote what type of content is being represented. The outermost tag (the root tag) of an HTML document is the <html> tag.-->
+<html>
+    <!--An HTML document has both a head and a body. The head contains metadata about the document.-->
+    <head>
+        <title>Welcome to RevBook!</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="./revbook.css"></link>
+    </head>
+    <!--The body contains elements which the client can actually see and interact with.-->
+    <body style="background-color: rgb(240, 243, 245);">
+        <!--We use divs to "div"-ide the page into different sections.-->
+        <div class="container">
+            <div id="message">
+                <h1>Connect with co-workers and the work around you.</h1>
+                <h2>RevBook</h2>
+            </div>
+            <div id="formDiv">
+                <form id="form">
+                    <input type="email" placeholder="Email" required/>
+                    <input type="password" placeholder="Password" required/>
+                    <button>Login</button>
+                </form>
+            </div>
+        </div>
+        <!--We can use the style tag to apply styles. This is better than inline CSS, but it's still limited because you can't reuse these styles in other HTML documents.-->
+        <style>
+            h1{
+                color: gray;
+            }
+        </style>
+        <!--We are referencing an external JS file at the bottom of this document. Note that we do so here because we want to make sure that all elements are rendered before we attempt to select and manipulate them.-->
+        <script src="./revbook.js"></script>
+    </body>
+</html>
