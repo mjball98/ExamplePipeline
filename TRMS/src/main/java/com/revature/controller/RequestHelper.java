@@ -1,18 +1,19 @@
 package com.revature.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.model.Card;
+import com.revature.model.Employee;
 import com.revature.service.CardService;
+import com.revature.service.EmployeeService;
 
 public class RequestHelper {
 
 	private static CardService cardService = new CardService();
+	private static EmployeeService employeeService = new EmployeeService();
 
 	public static String processGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -23,6 +24,8 @@ public class RequestHelper {
 		 */
 		final String URI = request.getRequestURI();
 		final String RESOURCE = URI.replace("/TRMS/dispatcher", "");
+		
+		//
 
 		switch (RESOURCE) {
 		case "/hello":
@@ -40,22 +43,34 @@ public class RequestHelper {
 
 		final String URI = request.getRequestURI();
 		final String RESOURCE = URI.replace("/TRMS/dispatcher", "");
+		
+		System.out.println("IN HERE!!!!");
+		
+		//System.out.println(request);
 
 		switch (RESOURCE) {
+		case "/login":
+			//Employee e = JSON.parse(request);
+			System.out.println(request.getParameter("username"));
+			System.out.println(request.getParameter("password"));
+			boolean valid = employeeService.checkAccount(request.getParameter("username"), request.getParameter("password"));
+			System.out.println(valid);
+			
 		case "/card/new":
+			break;
 			/*
 			 * As this is a handler method for Http Post requests, I'm expecting the client
 			 * to send data with the request. How do I access this data?
 			 */
-			final String cardname = request.getParameter("cardname");
-			final int typeid = Integer.parseInt(request.getParameter("typeid"));
-			final boolean faceup = Boolean.parseBoolean(request.getParameter("faceup"));
+			//final String cardname = request.getParameter("cardname");
+			//final int typeid = Integer.parseInt(request.getParameter("typeid"));
+			//final boolean faceup = Boolean.parseBoolean(request.getParameter("faceup"));
 
-			Card newCard = new Card(1, cardname, typeid, faceup, new Date(3333));
+			//Card newCard = new Card(1, cardname, typeid, faceup, new Date(3333));
 
-			cardService.insert(newCard);
+//			//cardService.insert(newCard);
 
-			break;
+			//break;
 
 		default:
 			response.setStatus(404);
