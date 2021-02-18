@@ -19,7 +19,7 @@ public class ManagerRepositoryImpl implements ManagerRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public List<Manager> findAll() {
 		List<Manager> managers = new ArrayList<>();
@@ -37,7 +37,7 @@ public class ManagerRepositoryImpl implements ManagerRepository {
 
 			while (set.next()) {
 				// extract data from the row the cursor is positioned at
-				managers.add(new Manager(set.getInt(1), set.getString(2)));
+				managers.add(new Manager(set.getInt(1), set.getInt(2), set.getString(3)));
 			}
 
 		} catch (SQLException e) {

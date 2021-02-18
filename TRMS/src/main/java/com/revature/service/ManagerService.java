@@ -24,6 +24,7 @@ public class ManagerService {
 		return this.managerRepository.findAll();
 	}
 	
+	
 	public Manager findById(int id) {
 		List<Manager> managers = new ArrayList<>();
 		managers = this.managerRepository.findAll();

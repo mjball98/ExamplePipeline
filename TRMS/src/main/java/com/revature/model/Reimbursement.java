@@ -9,18 +9,30 @@ public class Reimbursement {
 	// need some different type for reciept??
 	private String reciept;
 
+	private int resolving_manager_id;
+
 	public Reimbursement() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reimbursement(int id, float amount, int employee_id, String status, String reciept) {
+	public Reimbursement(int id, float amount, int employee_id, String status, String reciept,
+			int resolving_manager_id) {
 		super();
 		this.id = id;
 		this.amount = amount;
 		this.employee_id = employee_id;
 		this.status = status;
 		this.reciept = reciept;
+		this.resolving_manager_id = resolving_manager_id;
+	}
+
+	public int getResolving_manager_id() {
+		return resolving_manager_id;
+	}
+
+	public void setResolving_manager_id(int resolving_manager_id) {
+		this.resolving_manager_id = resolving_manager_id;
 	}
 
 	public int getId() {
@@ -71,6 +83,7 @@ public class Reimbursement {
 		result = prime * result + employee_id;
 		result = prime * result + id;
 		result = prime * result + ((reciept == null) ? 0 : reciept.hashCode());
+		result = prime * result + resolving_manager_id;
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
@@ -95,6 +108,8 @@ public class Reimbursement {
 				return false;
 		} else if (!reciept.equals(other.reciept))
 			return false;
+		if (resolving_manager_id != other.resolving_manager_id)
+			return false;
 		if (status == null) {
 			if (other.status != null)
 				return false;
@@ -106,7 +121,7 @@ public class Reimbursement {
 	@Override
 	public String toString() {
 		return "Reimbursement [id=" + id + ", amount=" + amount + ", employee_id=" + employee_id + ", status=" + status
-				+ ", reciept=" + reciept + "]";
+				+ ", resolving_manager_id=" + resolving_manager_id + ", reciept=" + reciept + "]";
 	}
 
 }
