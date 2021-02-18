@@ -83,6 +83,18 @@ public class EmployeeService {
 
 		LOG.debug("The employee id: " + id + " was entered to find an Emloyee by id. This is the employee found: "
 				+ employees.get(0));
+		return
+
+		employees.get(0);
+	}
+
+	public Employee findByEmail(String email) {
+		List<Employee> employees = new ArrayList<>();
+		employees = this.employeeRepository.findAll();
+		employees.removeIf(x -> !x.getUsername().equals(email));
+
+		LOG.debug("The employee email: " + email + " was entered to find an Emloyee by Email. This is the employee found: "
+				+ employees.get(0));
 		return employees.get(0);
 	}
 

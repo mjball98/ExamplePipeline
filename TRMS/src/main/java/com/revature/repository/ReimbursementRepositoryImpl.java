@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.model.Employee;
 import com.revature.model.Reimbursement;
 import com.revature.util.ConnectionClosers;
 import com.revature.util.ConnectionFactory;

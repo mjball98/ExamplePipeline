@@ -2,38 +2,43 @@ package com.revature.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.revature.model.Employee;
-import com.revature.service.CardService;
 import com.revature.service.EmployeeService;
 
 public class RequestHelper {
 
-	private static CardService cardService = new CardService();
 	private static EmployeeService employeeService = new EmployeeService();
 
-	public static String processGet(HttpServletRequest request, HttpServletResponse response)
+	public static Object processGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		/*
-		 * We can use our HttpServletRequest to access information about the HTTP
-		 * request.
-		 */
 		final String URI = request.getRequestURI();
-		final String RESOURCE = URI.replace("/TRMS/dispatcher", "");
+		System.out.println(URI);
+		final String RESOURCE = URI.replace("/TRMS/api", "");
+		System.out.println(RESOURCE);
 		
-		//
+		HttpSession session = request.getSession(false);
 
 		switch (RESOURCE) {
-		case "/hello":
-			return "Hello there! I'm a Java app!";
-		case "/goodbye":
-			return "See ya! Come back soon!";
+		case "/user/all":
+			response.setStatus(200);
+			return employeeService.findAll();
+		case "/viewAccountInfo":
+			return employeeService.findByEmail((String) session.getAttribute("useremail"));
+		case "/logout":
+			//HttpSession session = request.getSession(false);
+			if (session != null) {
+				session.invalidate();
+			}
+			return "Your session has been invalidated.";
 		default:
-			return "That is not a supported operation!";
+			response.setStatus(404);
+			return "Sorry. The resource you have requested does not exist.";
 		}
 
 	}
@@ -42,39 +47,34 @@ public class RequestHelper {
 			throws ServletException, IOException {
 
 		final String URI = request.getRequestURI();
-		final String RESOURCE = URI.replace("/TRMS/dispatcher", "");
-		
-		System.out.println("IN HERE!!!!");
-		
-		//System.out.println(request);
+		final String RESOURCE = URI.replace("/TRMS/api", "");
+
+		System.out.println("IN HERE!!!!!");
 
 		switch (RESOURCE) {
 		case "/login":
-			//Employee e = JSON.parse(request);
-			System.out.println(request.getParameter("username"));
-			System.out.println(request.getParameter("password"));
-			boolean valid = employeeService.checkAccount(request.getParameter("username"), request.getParameter("password"));
-			System.out.println(valid);
-			
-		case "/card/new":
+			final String email = request.getParameter("useremail");
+			final String password = request.getParameter("userpass");
+
+			if (employeeService.checkAccount(email, password)) {
+				// If the user credentials are valid, I'll grant the client a session
+				// and perhaps redirect the client to a new resource.
+
+//				response.sendRedirect("/ServletReview/Pages/home.html");
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/Pages/home.html");
+				dispatcher.forward(request, response);
+
+				// Let's also grant the client a session
+				HttpSession session = request.getSession();
+				session.setAttribute("useremail", email);
+				
+			}
 			break;
-			/*
-			 * As this is a handler method for Http Post requests, I'm expecting the client
-			 * to send data with the request. How do I access this data?
-			 */
-			//final String cardname = request.getParameter("cardname");
-			//final int typeid = Integer.parseInt(request.getParameter("typeid"));
-			//final boolean faceup = Boolean.parseBoolean(request.getParameter("faceup"));
-
-			//Card newCard = new Card(1, cardname, typeid, faceup, new Date(3333));
-
-//			//cardService.insert(newCard);
-
-			//break;
-
 		default:
 			response.setStatus(404);
-			response.getWriter().write("Operation not supported.");
 		}
+
 	}
+
 }

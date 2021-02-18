@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.model.Manager;
-import com.revature.model.Manager;
 import com.revature.util.ConnectionClosers;
 import com.revature.util.ConnectionFactory;
 
