@@ -16,48 +16,21 @@ import com.revature.repository.CardRepositoryImpl;
  */
 public class CardService {
 
-	/*
-	 * Prior to today, we used the System class to "debug" issues by simply printing
-	 * to the console. This isn't considered good practice. Instead, we will use
-	 * some logging technology (in our case, Log4J2).
-	 */
-
-	//private static final Logger LOG = LogManager.getFormatterLogger(CardService.class);
-
 	private CardRepository cardRepository;
 
 	public CardService() {
-		this.cardRepository = new CardRepositoryImpl();
+		cardRepository = new CardRepositoryImpl();
 	}
 
-	/*
-	 * This method has no business logic, but it is still appropriate to pass all of
-	 * our data through this service layer as it scales well and guarantees that we
-	 * do have some place to handle business logic.
-	 */
-	public void insert(Card card) {
-		this.cardRepository.insert(card);
+	public void insert(Card c) {
+		this.cardRepository.insert(c);
+	}
+
+	public void delete(Card c) {
+		this.cardRepository.delete(c);
 	}
 
 	public List<Card> findAll() {
 		return this.cardRepository.findAll();
 	}
-
-	public List<Card> findAllOmittingType(int id) {
-		List<Card> allCards = this.cardRepository.findAll();
-
-//		for(Card c : allCards) {
-//			if(c.getType_id() != id) {
-//				filteredCards.add(c);
-//			}
-//		}
-
-		allCards.removeIf((c) -> c.getType_id() == id);
-
-		//LOG.info("The number " + id + " was passed to the findallOmittingType method and " + "the output is: "
-				//+ allCards);
-
-		return allCards;
-	}
-
 }

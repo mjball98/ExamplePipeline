@@ -98,16 +98,16 @@ public class HelloWorldServlet extends HttpServlet {
 
 		// We'll send a list of cards back to the client.
 
-		List<Card> cards = new ArrayList<>();
-		cards.add(new Card(1, "Generic Monster", 1, false, new Date(3423)));
-		cards.add(new Card(2, "Jotaro's Stand", 2, true, new Date(334424234)));
-		cards.add(new Card(3, "Hermit Purple", 1, false, new Date(44423)));
+		//List<Card> cards = new ArrayList<>();
+		//cards.add(new Card(1, "Generic Monster", 1, false, new Date(3423)));
+		//cards.add(new Card(2, "Jotaro's Stand", 2, true, new Date(334424234)));
+		//cards.add(new Card(3, "Hermit Purple", 1, false, new Date(44423)));
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		final String JSON = objectMapper.writeValueAsString(cards);
+		//final String JSON = objectMapper.writeValueAsString(cards);
 
-		writer.write(JSON);
+		//writer.write(JSON);
 		// writer.write("Jello World");
 		// writer.println("Jello World");
 	}
@@ -137,16 +137,16 @@ public class HelloWorldServlet extends HttpServlet {
 		System.out.println(request.getParameter("username"));
 		System.out.println(request.getParameter("password"));
 
-		List<Card> cards = new ArrayList<>();
-		cards.add(new Card(1, "Generic Monster", 1, false, new Date(3423)));
-		cards.add(new Card(2, "Jotaro's Stand", 2, true, new Date(334424234)));
-		cards.add(new Card(3, "Hermit Purple", 1, false, new Date(44423)));
+		//List<Card> cards = new ArrayList<>();
+		//cards.add(new Card(1, "Generic Monster", 1, false, new Date(3423)));
+		//cards.add(new Card(2, "Jotaro's Stand", 2, true, new Date(334424234)));
+		//cards.add(new Card(3, "Hermit Purple", 1, false, new Date(44423)));
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		final String JSON = objectMapper.writeValueAsString(cards);
+		//final String JSON = objectMapper.writeValueAsString(cards);
 
-		writer.write(JSON);
+		//writer.write(JSON);
 		// writer.write("Jello World");
 		// writer.println("Jello World");
 	}

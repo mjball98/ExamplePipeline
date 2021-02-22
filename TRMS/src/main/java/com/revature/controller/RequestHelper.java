@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.revature.service.EmployeeService;
+import com.revature.service.ReimbursementService;
 
 public class RequestHelper {
 
 	private static EmployeeService employeeService = new EmployeeService();
+	private static ReimbursementService reimbursementService = new ReimbursementService();
 
 	public static Object processGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -22,7 +24,7 @@ public class RequestHelper {
 		final String RESOURCE = URI.replace("/TRMS/api", "");
 		System.out.println(RESOURCE);
 		
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
 
 		switch (RESOURCE) {
 		case "/user/all":
@@ -30,10 +32,14 @@ public class RequestHelper {
 			return employeeService.findAll();
 		case "/viewAccountInfo":
 			return employeeService.findByEmail((String) session.getAttribute("useremail"));
+		case "/viewReimbursements/Resolved":
+			return reimbursementService.findAllResolvedForEmployee((String) session.getAttribute("useremail"));
+		case "/viewReimbursements/Pending":
+			return reimbursementService.findAllPendingForEmployee((String) session.getAttribute("useremail"));
 		case "/logout":
-			//HttpSession session = request.getSession(false);
-			if (session != null) {
-				session.invalidate();
+			HttpSession session2 = request.getSession(false);
+			if (session2 != null) {
+				session2.invalidate();
 			}
 			return "Your session has been invalidated.";
 		default:

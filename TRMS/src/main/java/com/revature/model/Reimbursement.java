@@ -1,14 +1,32 @@
 package com.revature.model;
 
-public class Reimbursement {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "reimbursement_table")
+public class Reimbursement {
+	
+	@Id
+	@Column(name = "reimbursement_id")
+	@GeneratedValue(generator = "reimbursement_id_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(allocationSize = 1, name = "reimbursement_id_seq", sequenceName = "reimbursement_id_seq")
 	private int id;
+	@Column
 	private float amount;
+	@Column
 	private int employee_id;
+	@Column
 	private String status;
 	// need some different type for reciept??
+	@Column
 	private String reciept;
-
+	@Column
 	private int resolving_manager_id;
 
 	public Reimbursement() {

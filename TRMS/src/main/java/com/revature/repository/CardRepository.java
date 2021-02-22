@@ -6,13 +6,10 @@ import com.revature.model.Card;
 
 public interface CardRepository {
 
-	void insert(Card card);
-
 	List<Card> findAll();
-
 	Card findByName(String name);
+	void insert(Card c);
+	void update(Card c);
+	void delete(Card c);
 
-	void update(Card card);
-
-	void delete(Card card);
 }

@@ -1,6 +1,7 @@
 package com.revature;
 
-import com.revature.service.CardService;
+import com.revature.model.Reimbursement;
+import com.revature.service.ReimbursementService;
 
 public class Driver {
 
@@ -13,19 +14,25 @@ public class Driver {
 		 * CardRepository.
 		 */
 
-		CardService cardService = new CardService();
-//		Card toBeInserted = new Card(0, "Waffle Monster", 1, false, new Date(88888));
-//		cri.insert(toBeInserted);
+		//CardService cardService = new CardService();
 
-//		System.out.println(cardService.findAll());
-		cardService.findAllOmittingType(3);
+		//Card card1 = new Card(2, "Shiny New Pokemon", true, new Date(323733883838L));
+		//cardService.insert(card1);
+		
+		//Employee e1 = new Employee(1, "mike@email.com", "password", "Mike Ball", 1);
+		//EmployeeService eService = new EmployeeService();
+		//eService.insert(e1);
+		
+		//Manager m1 = new Manager(1,0,"Dummy Manager");
+		//ManagerService mService = new ManagerService();
+		//mService.insert(m1);
 
-		// SQL Injection
-//		String userInput = "Fire Ant'; drop table card cascade --";
-//		System.out.println(cri.findByName(userInput));
+		//System.out.println(cardService.findAll());
+
+		Reimbursement r1 = new Reimbursement(1, 100, 1, "pending", "no reciept", 0);
+		ReimbursementService rService = new ReimbursementService();
+		rService.insert(r1);
 		
 		
-		
-		//editing for purposes of a commit/push
 	}
 }

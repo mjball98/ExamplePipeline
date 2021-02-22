@@ -8,14 +8,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.revature.model.Reimbursement;
 import com.revature.util.ConnectionClosers;
 import com.revature.util.ConnectionFactory;
+import com.revature.util.HibernateSessionFactory;
 
 public class ReimbursementRepositoryImpl implements ReimbursementRepository {
 
-	@Override
-	public void insert(Reimbursement reimbursement) {
+	//@Override
+	public void insert2(Reimbursement reimbursement) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		/*
@@ -44,8 +49,8 @@ public class ReimbursementRepositoryImpl implements ReimbursementRepository {
 
 	}
 
-	@Override
-	public List<Reimbursement> findAll() {
+	//@Override
+	public List<Reimbursement> findAll2() {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 
 		Connection conn = null;
@@ -74,6 +79,46 @@ public class ReimbursementRepositoryImpl implements ReimbursementRepository {
 		}
 
 		return reimbursements;
+	}
+	
+	@Override
+	public List<Reimbursement> findAll() {
+		List<Reimbursement> reimbursements = new ArrayList<>();
+
+		Session s = null;
+		Transaction tx = null;
+
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			reimbursements = s.createQuery("FROM Reimbursement", Reimbursement.class).getResultList();
+			tx.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			s.close();
+		}
+
+		return reimbursements;
+	}
+	
+	@Override
+	public void insert(Reimbursement r) {
+		Session s = null;
+		Transaction tx = null;
+
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			s.save(r);
+			tx.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			s.close();
+		}
 	}
 	
 	@Override

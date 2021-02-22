@@ -1,15 +1,14 @@
 package com.revature.repository;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.revature.model.Manager;
-import com.revature.util.ConnectionClosers;
-import com.revature.util.ConnectionFactory;
+import com.revature.util.HibernateSessionFactory;
 
 public class ManagerRepositoryImpl implements ManagerRepository {
 
@@ -23,31 +22,40 @@ public class ManagerRepositoryImpl implements ManagerRepository {
 	public List<Manager> findAll() {
 		List<Manager> managers = new ArrayList<>();
 
-		Connection conn = null;
-		Statement stmt = null;
-		ResultSet set = null;
-
-		final String SQL = "select * from manager";
+		Session s = null;
+		Transaction tx = null;
 
 		try {
-			conn = ConnectionFactory.getConnection();
-			stmt = conn.createStatement();
-			set = stmt.executeQuery(SQL);
-
-			while (set.next()) {
-				// extract data from the row the cursor is positioned at
-				managers.add(new Manager(set.getInt(1), set.getInt(2), set.getString(3)));
-			}
-
-		} catch (SQLException e) {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			managers = s.createQuery("FROM Manager", Manager.class).getResultList();
+			tx.commit();
+		} catch (HibernateException e) {
 			e.printStackTrace();
+			tx.rollback();
 		} finally {
-			ConnectionClosers.close(conn);
-			ConnectionClosers.close(stmt);
-			ConnectionClosers.close(set);
+			s.close();
 		}
 
 		return managers;
+	}
+	
+	@Override
+	public void insert(Manager m) {
+		Session s = null;
+		Transaction tx = null;
+
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			s.save(m);
+			tx.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			s.close();
+		}
 	}
 
 }

@@ -6,11 +6,24 @@
 	</head>
 	<body>
 		<h1>Welcome back, user! This is the employee homepage!</h1>
-		<button id="pending" >View PENDING reimbursement requests</button>
-		<button id="resolved ">View RESOLVED reimbursement requests</button>
-		<div id="formDiv">
-			<form id="form" method="get" action="TRMS/api/viewAccountInfo">
+		<div id="viewPendingDiv">
+			<form id="viewPendingForm" method ="get" action="TRMS/api/viewReimbursements/Pending">
+				<button id="pending ">View PENDING reimbursement requests</button>
+			</form>
+		</div>
+		<div id="viewResolvedDiv">
+			<form id="viewResolvedForm" method ="get" action="TRMS/api/viewReimbursements/Resolved">
+				<button id="resolved ">View RESOLVED reimbursement requests</button>
+			</form>
+		</div>
+		<div id="viewAccountDiv">
+			<form id="viewAccountForm" method="get" action="TRMS/api/viewAccountInfo">
 				<button id="view account ">View your account information</button>
+			</form>
+		</div>
+		<div id="logoutDiv">
+			<form id="logoutForm" method="get" action="TRMS/api/logout">
+				<button id="logout ">Logout</button>
 			</form>
 		</div>
 		

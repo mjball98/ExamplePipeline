@@ -92,10 +92,17 @@ public class EmployeeService {
 		List<Employee> employees = new ArrayList<>();
 		employees = this.employeeRepository.findAll();
 		employees.removeIf(x -> !x.getUsername().equals(email));
+		
+		System.out.println(employees);
 
 		LOG.debug("The employee email: " + email + " was entered to find an Emloyee by Email. This is the employee found: "
 				+ employees.get(0));
 		return employees.get(0);
+	}
+	
+	public int findEmployeeIdByUsername(String username) {
+		return this.employeeRepository.findEmployeeIdByUsername(username);
+		
 	}
 
 	// need some type of id or way to get specific employee, easy to change
@@ -109,6 +116,10 @@ public class EmployeeService {
 
 	public void updateFullName(Employee employee, String fullname) {
 		this.employeeRepository.updateFullName(employee, fullname);
+	}
+	
+	public void insert(Employee e) {
+		this.employeeRepository.insert(e);
 	}
 
 }

@@ -33,5 +33,9 @@ public class ManagerService {
 		LOG.debug("The manager id: "+id+" was entered to find an Manager by Id. This is the manager found: "+managers.get(0));
 		return managers.get(0);
 	}
+	
+	public void insert(Manager m) {
+		this.managerRepository.insert(m);
+	}
 
 }

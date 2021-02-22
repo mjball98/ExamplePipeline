@@ -17,6 +17,7 @@ public class ReimbursementService {
 	private ReimbursementRepository reimbursementRepository;
 
 	ManagerService managerService = new ManagerService();
+	EmployeeService employeeService = new EmployeeService();
 
 	private static final Logger LOG = LogManager.getFormatterLogger(ReimbursementService.class);
 
@@ -32,9 +33,11 @@ public class ReimbursementService {
 		return this.reimbursementRepository.findAll();
 	}
 
-	public List<Reimbursement> findAllPendingForEmployee(int id) {
+	public List<Reimbursement> findAllPendingForEmployee(String username) {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		reimbursements = this.reimbursementRepository.findAll();
+		
+		int id = employeeService.findEmployeeIdByUsername(username);
 
 		reimbursements.removeIf(x -> x.getEmployee_id() != id);
 		reimbursements.removeIf(x -> !x.getStatus().equals("pending"));
@@ -45,12 +48,16 @@ public class ReimbursementService {
 		return reimbursements;
 	}
 
-	public List<Reimbursement> findAllResolvedForEmployee(int id) {
+	public List<Reimbursement> findAllResolvedForEmployee(String username) {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		reimbursements = this.reimbursementRepository.findAll();
+		
+		int id = employeeService.findEmployeeIdByUsername(username);
+		System.out.println(id);
+		System.out.println((reimbursements));
 
 		reimbursements.removeIf(x -> x.getEmployee_id() != id);
-		reimbursements.removeIf(x -> x.getStatus().equals("pending"));
+		reimbursements.removeIf(x -> !x.getStatus().equals("resolved"));
 
 		LOG.debug("The employee id: " + id
 				+ " was entered to find all resolved reimbursements by employee id. This is the list of reimbursements: "
