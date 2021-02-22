@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Account Info!</title>
+	</head>
+	<body>
+		<h1>This is the account info page!</h1>
+		<div class = "account-info">
+		</div>
+		
+		<div id="updateUsernameDiv">
+			<form id="updateUsernameForm" method ="get" action="TRMS/api/updateAccountInfo/username">
+				<button id="update username">Update username</button>
+			</form>
+		</div>
+		
+		<div id="updatePasswordDiv">
+			<form id="updatePasswordForm" method ="get" action="TRMS/api/updateAccountInfo/password">
+				<button id="update password">Update password</button>
+			</form>
+		</div>
+		
+		<script src="./Scripts/accountInfo.js"></script>
+	</body>
+</html>
