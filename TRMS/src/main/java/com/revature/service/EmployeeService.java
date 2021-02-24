@@ -54,6 +54,25 @@ public class EmployeeService {
 
 		return valid;
 	}
+	
+	public boolean isEmployeeManager(String username, String password) {
+		boolean manager = false;
+		System.out.println("CHECKING IF IT IS A MANAGER");
+		
+		List<Employee> accounts = new ArrayList<>();
+		accounts = this.employeeRepository.findAll();
+		for (Employee e : accounts) {
+			if (e.getUsername().equals(username) && e.getPassword().equals(password)) {
+				if(e.isIs_manager()) {
+					System.out.println("SETTING MANAGER TO TRUE");
+					manager = true;
+				}
+			}
+		}
+		
+		return manager;
+		
+	}
 
 	public List<Employee> findEmployeesByManagerId(int id) {
 		List<Employee> employees = new ArrayList<>();

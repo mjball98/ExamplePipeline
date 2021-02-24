@@ -37,7 +37,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 			while (set.next()) {
 				// extract data from the row the cursor is positioned at
 				employees.add(new Employee(set.getInt(1), set.getString(2), set.getString(3), set.getString(4),
-						set.getInt(5)));
+						set.getInt(5), set.getBoolean(6)));
 			}
 
 		} catch (SQLException e) {

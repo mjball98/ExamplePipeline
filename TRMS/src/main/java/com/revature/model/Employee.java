@@ -25,6 +25,9 @@ public class Employee {
 	private String full_name;
 	@Column
 	private int manager_id;
+	
+	@Column
+	private boolean is_manager;
 
 	public int getManager_id() {
 		return manager_id;
@@ -34,13 +37,24 @@ public class Employee {
 		this.manager_id = manager_id;
 	}
 
-	public Employee(int id, String username, String password, String full_name, int manager_id) {
+	
+
+	public boolean isIs_manager() {
+		return is_manager;
+	}
+
+	public void setIs_manager(boolean is_manager) {
+		this.is_manager = is_manager;
+	}
+
+	public Employee(int id, String username, String password, String full_name, int manager_id, boolean is_manager) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.full_name = full_name;
 		this.manager_id = manager_id;
+		this.is_manager = is_manager;
 	}
 
 	public Employee() {
@@ -86,6 +100,7 @@ public class Employee {
 		int result = 1;
 		result = prime * result + ((full_name == null) ? 0 : full_name.hashCode());
 		result = prime * result + id;
+		result = prime * result + (is_manager ? 1231 : 1237);
 		result = prime * result + manager_id;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -108,6 +123,8 @@ public class Employee {
 			return false;
 		if (id != other.id)
 			return false;
+		if (is_manager != other.is_manager)
+			return false;
 		if (manager_id != other.manager_id)
 			return false;
 		if (password == null) {
@@ -126,7 +143,8 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", username=" + username + ", password=" + password + ", full_name=" + full_name
-				+ ", manager_id=" + manager_id + "]";
+				+ ", manager_id=" + manager_id + ", is_manager=" + is_manager + "]";
 	}
 
+	
 }

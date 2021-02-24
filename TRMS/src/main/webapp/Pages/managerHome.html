@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome Home!</title>
+</head>
+<body>
+	<h1>Welcome back, user! This is the MANAGER homepage!</h1>
+	<div id="viewPendingDiv">
+		<form id="viewPendingForm" method="get"
+			action="TRMS/api/viewReimbursements/Pending">
+			<button id="pending">View PENDING reimbursement requests</button>
+		</form>
+	</div>
+	<div id="viewResolvedDiv">
+		<form id="viewResolvedForm" method="get"
+			action="TRMS/api/viewReimbursements/Resolved">
+			<button id="resolved">View RESOLVED reimbursement requests</button>
+		</form>
+	</div>
+	<div id="viewAccountDiv">
+		<form id="viewAccountForm" method="get"
+			action="TRMS/api/viewAccountInfo">
+			<button id="view account">View your account information</button>
+		</form>
+	</div>
+
+	<div id="submitReimbursementDiv">
+		<form id="sumbitReimbursementForm" method="get"
+			action="TRMS/api/submitReimbursement">
+			<button id="submitReimbursement">Submit Reimbursement</button>
+		</form>
+	</div>
+	
+	<div id="ViewPendingForEmployeesDiv">
+		<form id="ViewPendingForEmployeesForm" method="get" action="TRMS/api/submitReimbursement">
+			<button id="ViewPendingForEmployees">View Pending Reimbursements For Your Employees</button>
+		</form>
+	</div>
+	
+	<div id="ViewResolvedForAllDiv">
+		<form id="ViewResolvedForAllForm" method="get" action="TRMS/api/viewAllResolved">
+			<button id="ViewResolvedForAll">View Resolved Reimbursements For All Employees</button>
+		</form>
+	</div>
+	
+	<div id="ViewEmployeesAndManagersDiv">
+		<form id="ViewEmployeesAndManagersForm" method="get" action="TRMS/api/submitReimbursement">
+			<button id="ViewEmployeesAndManagers">View All Employees And Their Managers</button>
+		</form>
+	</div>
+
+	<div id="logoutDiv">
+		<form id="logoutForm" method="get" action="TRMS/api/logout">
+			<button id="logout">Logout</button>
+		</form>
+	</div>
+
+
+	<script src="./Scripts/managerHome.js"></script>
+</body>
+</html>

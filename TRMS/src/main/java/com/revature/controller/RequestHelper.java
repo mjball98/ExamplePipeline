@@ -46,12 +46,14 @@ public class RequestHelper {
 			dispatcher.forward(request, response);
 			//what do i return???
 			return "o";
+		case "/viewAllResolved":
+			return reimbursementService.findAllResolved();
 		case "/logout":
 			HttpSession session2 = request.getSession(false);
 			if (session2 != null) {
 				session2.invalidate();
 			}
-			RequestDispatcher dispatcher2 = request.getRequestDispatcher("/TRMS");
+			RequestDispatcher dispatcher2 = request.getRequestDispatcher("/");
 			dispatcher2.forward(request, response);
 			return "Your session has been invalidated.";
 		default:
@@ -89,9 +91,15 @@ public class RequestHelper {
 //				response.sendRedirect("/ServletReview/Pages/home.html");
 				
 				System.out.println("IN HERE IN LOGIN");
-
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/Pages/home.html");
-				dispatcher.forward(request, response);
+				
+				if(employeeService.isEmployeeManager(email, password)) {
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/Pages/managerHome.html");
+					dispatcher.forward(request, response);
+				}
+				else {
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/Pages/employeeHome.html");
+					dispatcher.forward(request, response);
+				}
 
 				// Let's also grant the client a session
 				HttpSession session = request.getSession();
