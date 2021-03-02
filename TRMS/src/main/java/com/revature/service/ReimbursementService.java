@@ -33,12 +33,44 @@ public class ReimbursementService {
 	public List<Reimbursement> findAll() {
 		return this.reimbursementRepository.findAll();
 	}
-
-	public List<Reimbursement> findAllPendingForEmployee(String username) {
+	
+	public Reimbursement findById(int id) {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		reimbursements = this.reimbursementRepository.findAll();
+	
+		reimbursements.removeIf(x -> x.getId() != id);
 		
+		return reimbursements.get(0);
+	}
+
+	public List<Reimbursement> findAllPendingForEmployee(String username) {
+
+		// List<Employee> employees = new ArrayList<>();
+		// employees = find
+
+		List<Reimbursement> reimbursements = new ArrayList<>();
+		reimbursements = this.reimbursementRepository.findAll();
+
 		int id = employeeService.findEmployeeIdByUsername(username);
+
+		reimbursements.removeIf(x -> x.getEmployee_id() != id);
+		reimbursements.removeIf(x -> !x.getStatus().equals("pending"));
+
+		LOG.debug("The employee id: " + id
+				+ " was entered to find all pending reimbursements by employee id. This is the list of reimbursements: "
+				+ reimbursements);
+		return reimbursements;
+	}
+
+	public List<Reimbursement> findAllPendingForEmployeeById(int id) {
+
+		// List<Employee> employees = new ArrayList<>();
+		// employees = find
+
+		List<Reimbursement> reimbursements = new ArrayList<>();
+		reimbursements = this.reimbursementRepository.findAll();
+
+		//int id = employeeService.findEmployeeIdByUsername(username);
 
 		reimbursements.removeIf(x -> x.getEmployee_id() != id);
 		reimbursements.removeIf(x -> !x.getStatus().equals("pending"));
@@ -52,13 +84,13 @@ public class ReimbursementService {
 	public List<Reimbursement> findAllResolvedForEmployee(String username) {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		reimbursements = this.reimbursementRepository.findAll();
-		
+
 		int id = employeeService.findEmployeeIdByUsername(username);
 		System.out.println(id);
 		System.out.println((reimbursements));
 
 		reimbursements.removeIf(x -> x.getEmployee_id() != id);
-		reimbursements.removeIf(x -> !x.getStatus().equals("resolved"));
+		reimbursements.removeIf(x -> x.getStatus().equals("pending"));
 
 		LOG.debug("The employee id: " + id
 				+ " was entered to find all resolved reimbursements by employee id. This is the list of reimbursements: "
@@ -84,12 +116,8 @@ public class ReimbursementService {
 		return returnMap;
 	}
 	
-	public void reimburesemntApprove(int id) {
-		this.reimbursementRepository.update(id, "approved");
-	}
-	
-	public void reimbursementDeny(int id) {
-		this.reimbursementRepository.update(id, "denied");
+	public void update(Reimbursement r1) {
+		this.reimbursementRepository.update(r1);
 	}
 
 }

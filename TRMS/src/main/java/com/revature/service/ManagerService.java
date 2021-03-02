@@ -24,6 +24,16 @@ public class ManagerService {
 		return this.managerRepository.findAll();
 	}
 	
+	public int findManagerIdByUsername(String name) {
+		List<Manager> managers = new ArrayList<>();
+		managers = this.managerRepository.findAll();
+		managers.removeIf(x -> !x.getFull_name().equals(name));
+		
+		//LOG.debug("The manager id: "+id+" was entered to find an Manager by Id. This is the manager found: "+managers.get(0));
+		return managers.get(0).getId();
+	}
+		
+	
 	
 	public Manager findById(int id) {
 		List<Manager> managers = new ArrayList<>();

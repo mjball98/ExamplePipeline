@@ -6,7 +6,6 @@ import com.revature.model.Manager;
 
 public interface ManagerRepository {
 	
-	Manager findById(int id);
 	List<Manager> findAll();
 	void insert(Manager m);
 

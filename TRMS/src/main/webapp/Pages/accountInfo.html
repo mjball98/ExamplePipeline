@@ -3,23 +3,35 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Account Info!</title>
+		<link rel="stylesheet" href="./Styles/grid.css"></link>
 	</head>
 	<body>
 		<h1>This is the account info page!</h1>
-		<div class = "account-info">
+		<div class = "container account-info">
 		</div>
 		
 		<div id="updateUsernameDiv">
-			<form id="updateUsernameForm" method ="get" action="TRMS/api/updateAccountInfo/username">
-				<button id="update username">Update username</button>
+			<form id="updateUsernameForm" method ="post" action="TRMS/api/updateAccountInfo/username">
+				<button id="update email">Update email</button>
+				<input type="text" placeholder="Email" name="email" required />
 			</form>
 		</div>
 		
 		<div id="updatePasswordDiv">
 			<form id="updatePasswordForm" method ="get" action="TRMS/api/updateAccountInfo/password">
 				<button id="update password">Update password</button>
+				<input type="text" placeholder="Password" name="password" required />
 			</form>
 		</div>
+		
+		<div id="updateFullNameDiv">
+			<form id="updateFullNameForm" method ="post" action="TRMS/api/updateAccountInfo/fullname">
+				<button id="update full name">Update password</button>
+				<input type="text" placeholder="Full Name" name="fullname" required />
+			</form>
+		</div>
+		
+		
 		
 		<script src="./Scripts/accountInfo.js"></script>
 	</body>

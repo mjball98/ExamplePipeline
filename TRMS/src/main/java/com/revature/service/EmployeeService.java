@@ -54,24 +54,24 @@ public class EmployeeService {
 
 		return valid;
 	}
-	
+
 	public boolean isEmployeeManager(String username, String password) {
 		boolean manager = false;
 		System.out.println("CHECKING IF IT IS A MANAGER");
-		
+
 		List<Employee> accounts = new ArrayList<>();
 		accounts = this.employeeRepository.findAll();
 		for (Employee e : accounts) {
 			if (e.getUsername().equals(username) && e.getPassword().equals(password)) {
-				if(e.isIs_manager()) {
+				if (e.isIs_manager()) {
 					System.out.println("SETTING MANAGER TO TRUE");
 					manager = true;
 				}
 			}
 		}
-		
+
 		return manager;
-		
+
 	}
 
 	public List<Employee> findEmployeesByManagerId(int id) {
@@ -111,32 +111,57 @@ public class EmployeeService {
 		List<Employee> employees = new ArrayList<>();
 		employees = this.employeeRepository.findAll();
 		employees.removeIf(x -> !x.getUsername().equals(email));
-		
+
 		System.out.println(employees);
 
-		LOG.debug("The employee email: " + email + " was entered to find an Emloyee by Email. This is the employee found: "
-				+ employees.get(0));
+		LOG.debug("The employee email: " + email
+				+ " was entered to find an Emloyee by Email. This is the employee found: " + employees.get(0));
 		return employees.get(0);
 	}
-	
+
+	public String findFullnameByUsername(String username) {
+		List<Employee> employees = new ArrayList<>();
+		employees = this.employeeRepository.findAll();
+		employees.removeIf(x -> !x.getUsername().equals(username));
+
+		System.out.println(employees);
+
+		return employees.get(0).getFull_name();
+	}
+
+	public String findManagerNameByEmployeeUsername(String username) {
+
+		System.out.println(username);
+		List<Employee> employees = new ArrayList<>();
+		employees = this.employeeRepository.findAll();
+		System.out.println(employees);
+		employees.removeIf(x -> !x.getUsername().equals(username));
+
+		System.out.println(employees);
+
+		// LOG.debug("The employee email: " + email + " was entered to find an Emloyee
+		// by Email. This is the employee found: "
+		// + employees.get(0));
+		return employees.get(0).getFull_name();
+	}
+
 	public int findEmployeeIdByUsername(String username) {
-		return this.employeeRepository.findEmployeeIdByUsername(username);
-		
+		System.out.println(username);
+		List<Employee> employees = new ArrayList<>();
+		employees = this.employeeRepository.findAll();
+		System.out.println(employees);
+		employees.removeIf(x -> !x.getUsername().equals(username));
+
+		System.out.println(employees);
+
+		return employees.get(0).getId();
 	}
 
-	// need some type of id or way to get specific employee, easy to change
-	public void updateUsername(Employee employee, String username) {
-		this.employeeRepository.updateUsername(employee, username);
+	public void update(Employee e) {
+		System.out.println("Updating password!");
+		this.employeeRepository.update(e);
 	}
 
-	public void updatePassword(Employee employee, String password) {
-		this.employeeRepository.updatePassword(employee, password);
-	}
-
-	public void updateFullName(Employee employee, String fullname) {
-		this.employeeRepository.updateFullName(employee, fullname);
-	}
-	
 	public void insert(Employee e) {
 		this.employeeRepository.insert(e);
 	}

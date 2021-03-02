@@ -13,12 +13,6 @@ import com.revature.util.HibernateSessionFactory;
 public class ManagerRepositoryImpl implements ManagerRepository {
 
 	@Override
-	public Manager findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Manager> findAll() {
 		List<Manager> managers = new ArrayList<>();
 
@@ -39,7 +33,7 @@ public class ManagerRepositoryImpl implements ManagerRepository {
 
 		return managers;
 	}
-	
+
 	@Override
 	public void insert(Manager m) {
 		Session s = null;

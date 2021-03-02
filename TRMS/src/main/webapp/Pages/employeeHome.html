@@ -18,12 +18,40 @@
 			<button id="resolved">View RESOLVED reimbursement requests</button>
 		</form>
 	</div>
-	<div id="viewAccountDiv">
-		<form id="viewAccountForm" method="get"
-			action="TRMS/api/viewAccountInfo">
+
+	<div id="viewInfoDiv">
+		<form id="viewInfoForm" method="get" action="TRMS/api/accountInfoShow">
 			<button id="view account">View your account information</button>
 		</form>
 	</div>
+
+	<div id="updatePasswordDiv">
+		<form id="updatePasswordForm" method="post"
+			action="TRMS/api/updateAccountInfo/password">
+			<button id="update password">Update password</button>
+			<input type="text" placeholder="Password" name="password" required />
+		</form>
+	</div>
+
+	<div id="updateFullNameDiv">
+		<form id="updateFullNameForm" method="post"
+			action="TRMS/api/updateAccountInfo/fullname">
+			<button id="update full name">Update full name</button>
+			<input type="text" placeholder="Full Name" name="fullname" required />
+		</form>
+	</div>
+
+
+	<div id="viewAccountDiv2">
+		<form id="viewAccountForm2" method="get"
+			action="TRMS/api/updateAccount9090">
+			<button id="view account90">Update your account information
+				TESTING!!!!</button>
+		</form>
+	</div>
+
+
+
 
 	<div id="submitReimbursementDiv">
 		<form id="sumbitReimbursementForm" method="get"

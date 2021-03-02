@@ -8,5 +8,5 @@ public interface ReimbursementRepository {
 	
 	void insert(Reimbursement reimbursement);
 	List<Reimbursement> findAll();
-	void update(int id, String status);
+	void update(Reimbursement r1);
 }

@@ -1,7 +1,7 @@
 package com.revature;
 
-import com.revature.model.Employee;
-import com.revature.service.EmployeeService;
+import com.revature.model.Reimbursement;
+import com.revature.service.ReimbursementService;
 
 public class Driver {
 
@@ -19,9 +19,9 @@ public class Driver {
 		//Card card1 = new Card(2, "Shiny New Pokemon", true, new Date(323733883838L));
 		//cardService.insert(card1);
 		
-		Employee e1 = new Employee(1, "manager@email.com", "password", "Manager Name", 1, true);
-		EmployeeService eService = new EmployeeService();
-		eService.insert(e1);
+		//Employee e1 = new Employee(1, "manager@email.com", "password", "Manager Name", 1, true);
+		//EmployeeService eService = new EmployeeService();
+		//eService.insert(e1);
 		
 		//Manager m1 = new Manager(1,0,"Dummy Manager");
 		//ManagerService mService = new ManagerService();
@@ -29,9 +29,9 @@ public class Driver {
 
 		//System.out.println(cardService.findAll());
 
-		//Reimbursement r1 = new Reimbursement(1, 100, 1, "pending", "no reciept", 0);
-		//ReimbursementService rService = new ReimbursementService();
-		//rService.insert(r1);
+		Reimbursement r1 = new Reimbursement(1, 99999, 1, "resolved", "no reciept", 1);
+		ReimbursementService rService = new ReimbursementService();
+		rService.insert(r1);
 		
 		
 	}
