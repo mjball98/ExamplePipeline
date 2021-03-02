@@ -2,8 +2,8 @@
  * 
  */
 
-let pendingButton = documenet.getElementById("pending")
-pendingButton.addEventListener('click', viewPending)
+//let pendingButton = documenet.getElementById("pending")
+//pendingButton.addEventListener('click', viewPending)
 
 let resolvedButton = document.getElementById("resolved")
 resolvedButton.addEventListener('click', viewResolved)

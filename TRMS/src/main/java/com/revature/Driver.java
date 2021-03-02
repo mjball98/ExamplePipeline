@@ -29,7 +29,7 @@ public class Driver {
 
 		//System.out.println(cardService.findAll());
 
-		Reimbursement r1 = new Reimbursement(1, 99999, 1, "resolved", "no reciept", 1);
+		Reimbursement r1 = new Reimbursement(1, 12345, 2, "approved", "no reciept", 1);
 		ReimbursementService rService = new ReimbursementService();
 		rService.insert(r1);
 		

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Submit Reimbursement</title>
+</head>
+<body>
+	
+	<div id="formDiv">
+		<form id="form" method="post"
+			action="/TRMS/api/Employee/insertReimbursement">
+			<input type="number" placeholder="Amount" name="amount" required />
+			<input type="text" placeholder="Reciept" name="reciept" required />
+			<button>Submit22222</button>
+		</form>
+	</div>
+	
+	
+
+	<div id="homeDiv">
+		<form id="homeForm" method="get" action="api/employeeHome">
+			<button id="home">Back to Home Page</button>
+		</form>
+	</div>
+
+</body>
+</html>

@@ -6,12 +6,19 @@
 </head>
 <body>
 	<div id="formDiv">
-		<form id="form" method="post" action="/TRMS/api/insertReimbursement">
+		<form id="form" method="post" action="/TRMS/api/Manager/insertReimbursement">
 			<input type="number" placeholder="Amount" name="amount" required />
 			<input type = "text" placeholder="Reciept" name="reciept"
 				required />
 			<button>Submit</button>
 		</form>
+		
+		<div id="homeDiv">
+			<form id="homeForm" method="get"
+				action="api/managerHome">
+				<button id="home">Back to Home Page</button>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
