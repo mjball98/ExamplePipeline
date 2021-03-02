@@ -2,14 +2,6 @@
  * 
  */
 
-let updateUsernameButton = documenet.getElementById("update username")
-updateUsernameButton.addEventListener('click', updateUsername)
-
-let updatePasswordButton = document.getElementById("update password")
-updatePasswordButton.addEventListener('click', updatePassword)
-
-
-
 function grabAccountInfo() {
 	//We want to select the div which contains all of the cards and append more cards to this div
 	let div = document.querySelector('.account-info')
@@ -59,10 +51,13 @@ function grabAccountInfo() {
 
 
 window.onload = () => {
+	console.log('Window .onload()!')
 	let xhr2 = new XMLHttpRequest()
 	xhr2.open('GET', 'http://localhost:8080/TRMS/hello')
 	xhr2.send()
 	let info = JSON.parse(xhr2.response)
+	console.log('Think i got some data')
+	console.log(info)
 
 	let div = document.querySelector('.account-info')
 	for(let i of info){

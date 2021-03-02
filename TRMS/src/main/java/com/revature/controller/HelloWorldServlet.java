@@ -74,7 +74,7 @@ public class HelloWorldServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("IN THE UPDATE ACCOUNT SECTION of hello world servlet");
+		//System.out.println("IN THE UPDATE ACCOUNT SECTION of hello world servlet");
 		
 		HttpSession session = request.getSession();
 		
@@ -89,6 +89,9 @@ public class HelloWorldServlet extends HttpServlet {
 		writer.write(JSON);
 	}
 	
+	
+	
+	///TRMS/src/main/webapp/Scripts/accountInfo.js
 	
 	
 	protected void doGet1(HttpServletRequest request, HttpServletResponse response)

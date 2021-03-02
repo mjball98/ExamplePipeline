@@ -51,7 +51,7 @@ public class RequestHelper {
 		case"/updateAccount9090":
 			System.out.println("UPDATE ACCOUNT 9090");
 			//response.sendRedirect("TRMS/Pages/accountInfo.html");
-			RequestDispatcher dispatcher3 = request.getRequestDispatcher("/Pages/accountInfo.html");
+			RequestDispatcher dispatcher3 = request.getRequestDispatcher("/accountInfo.html");
 			dispatcher3.forward(request, response);
 			return 0;
 		
@@ -223,7 +223,7 @@ public class RequestHelper {
 					dispatcher.forward(request, response);
 				}
 				else {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/Pages/employeeHome.html");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/employeeHome.html");
 					dispatcher.forward(request, response);
 				}
 
