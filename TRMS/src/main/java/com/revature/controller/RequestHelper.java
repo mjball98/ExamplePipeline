@@ -104,12 +104,30 @@ public class RequestHelper {
 		case "/logout":
 			HttpSession session2 = request.getSession(false);
 			if (session2 != null) {
-				session2.invalidate();
+				//RequestDispatcher dispatcher2 = request.getRequestDispatcher("/Pages/EmployeeHome.html");
+				//dispatcher2.forward(request, response);
+				//session2.invalidate();
+			}
+			//RequestDispatcher dispatcher2 = request.getRequestDispatcher("/index.html");
+			//dispatcher2.forward(request, response);
+			System.out.println("Literally trying to do nothing");
+			return "Your session has been invalidated.";
+
+		
+		
+		case"/logout2":
+			HttpSession session3 = request.getSession(false);
+			if (session3 != null) {
+				//RequestDispatcher dispatcher2 = request.getRequestDispatcher("/Pages/EmployeeHome.html");
+				//dispatcher2.forward(request, response);
+				session3.invalidate();
 			}
 			RequestDispatcher dispatcher2 = request.getRequestDispatcher("/index.html");
 			dispatcher2.forward(request, response);
+			System.out.println("Literally trying to do nothing");
 			return "Your session has been invalidated.";
 		default:
+			
 			response.setStatus(404);
 			return "Sorry. The resource you have requested does not exist.";
 		}

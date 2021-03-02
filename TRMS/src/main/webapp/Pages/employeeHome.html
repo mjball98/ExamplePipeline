@@ -3,69 +3,73 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome Home!</title>
+<link rel="stylesheet" href="./Styles/grid.css"></link>
 </head>
 <body>
 	<h1>Welcome back, user! This is the employee homepage!</h1>
-	<div id="viewPendingDiv">
-		<form id="viewPendingForm" method="get"
-			action="TRMS/api/viewReimbursements/Pending">
-			<button id="pending">View PENDING reimbursement requests</button>
-		</form>
+	<div class="container">
+		<div id="viewPendingDiv">
+			<form id="viewPendingForm" method="get"
+				action="TRMS/api/viewReimbursements/Pending">
+				<button id="pending">View PENDING reimbursement requests</button>
+			</form>
+		</div>
+		<div id="viewResolvedDiv">
+			<form id="viewResolvedForm" method="get"
+				action="TRMS/api/viewReimbursements/Resolved">
+				<button id="resolved">View RESOLVED reimbursement requests</button>
+			</form>
+		</div>
+
+		<div id="viewInfoDiv">
+			<form id="viewInfoForm" method="get"
+				action="TRMS/api/accountInfoShow">
+				<button id="view account">View your account information</button>
+			</form>
+		</div>
+
+		<div id="updatePasswordDiv">
+			<form id="updatePasswordForm" method="post"
+				action="TRMS/api/updateAccountInfo/password">
+				<button id="update password">Update password</button>
+				<input type="text" placeholder="Password" name="password" required />
+			</form>
+		</div>
+
+		<div id="updateFullNameDiv">
+			<form id="updateFullNameForm" method="post"
+				action="TRMS/api/updateAccountInfo/fullname">
+				<button id="update full name">Update full name</button>
+				<input type="text" placeholder="Full Name" name="fullname" required />
+			</form>
+		</div>
+
+
+		<div id="viewAccountDiv2">
+			<form id="viewAccountForm2" method="get"
+				action="TRMS/api/updateAccount9090">
+				<button id="view account90">Update your account information
+					TESTING!!!!</button>
+			</form>
+		</div>
+
+
+
+
+		<div id="submitReimbursementDiv">
+			<form id="sumbitReimbursementForm" method="get"
+				action="TRMS/api/submitReimbursement">
+				<button id="submitReimbursement">Submit Reimbursement</button>
+			</form>
+		</div>
+		
+		<div id="logout2Div">
+			<form id="logout2Form" method="get" action="TRMS/api/logout2">
+				<button id="logout2">Logout</button>
+			</form>
+		</div>
+
 	</div>
-	<div id="viewResolvedDiv">
-		<form id="viewResolvedForm" method="get"
-			action="TRMS/api/viewReimbursements/Resolved">
-			<button id="resolved">View RESOLVED reimbursement requests</button>
-		</form>
-	</div>
-
-	<div id="viewInfoDiv">
-		<form id="viewInfoForm" method="get" action="TRMS/api/accountInfoShow">
-			<button id="view account">View your account information</button>
-		</form>
-	</div>
-
-	<div id="updatePasswordDiv">
-		<form id="updatePasswordForm" method="post"
-			action="TRMS/api/updateAccountInfo/password">
-			<button id="update password">Update password</button>
-			<input type="text" placeholder="Password" name="password" required />
-		</form>
-	</div>
-
-	<div id="updateFullNameDiv">
-		<form id="updateFullNameForm" method="post"
-			action="TRMS/api/updateAccountInfo/fullname">
-			<button id="update full name">Update full name</button>
-			<input type="text" placeholder="Full Name" name="fullname" required />
-		</form>
-	</div>
-
-
-	<div id="viewAccountDiv2">
-		<form id="viewAccountForm2" method="get"
-			action="TRMS/api/updateAccount9090">
-			<button id="view account90">Update your account information
-				TESTING!!!!</button>
-		</form>
-	</div>
-
-
-
-
-	<div id="submitReimbursementDiv">
-		<form id="sumbitReimbursementForm" method="get"
-			action="TRMS/api/submitReimbursement">
-			<button id="submitReimbursement">Submit Reimbursement</button>
-		</form>
-	</div>
-
-	<div id="logoutDiv">
-		<form id="logoutForm" method="get" action="TRMS/api/logout">
-			<button id="logout">Logout</button>
-		</form>
-	</div>
-
 
 	<script src="./Scripts/employeeHome.js"></script>
 </body>
