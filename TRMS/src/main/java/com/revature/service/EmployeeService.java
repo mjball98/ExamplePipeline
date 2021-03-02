@@ -73,6 +73,16 @@ public class EmployeeService {
 		return manager;
 
 	}
+	
+	public Employee findByUsername(String username) {
+		List<Employee> employees = new ArrayList<>();
+		employees = this.employeeRepository.findAll();
+		employees.removeIf(x -> !x.getUsername().equals(username));
+
+		LOG.debug("The employee username: " + username
+				+ " was entered to find an Emloyee by Username. This is the employee found: " + employees.get(0));
+		return employees.get(0);
+	}
 
 	public List<Employee> findEmployeesByManagerId(int id) {
 		List<Employee> employees = new ArrayList<>();
@@ -85,15 +95,6 @@ public class EmployeeService {
 		return employees;
 	}
 
-	public Employee findByUsername(String username) {
-		List<Employee> employees = new ArrayList<>();
-		employees = this.employeeRepository.findAll();
-		employees.removeIf(x -> !x.getUsername().equals(username));
-
-		LOG.debug("The employee username: " + username
-				+ " was entered to find an Emloyee by Username. This is the employee found: " + employees.get(0));
-		return employees.get(0);
-	}
 
 	public Employee findById(int id) {
 		List<Employee> employees = new ArrayList<>();
@@ -158,7 +159,6 @@ public class EmployeeService {
 	}
 
 	public void update(Employee e) {
-		System.out.println("Updating password!");
 		this.employeeRepository.update(e);
 	}
 

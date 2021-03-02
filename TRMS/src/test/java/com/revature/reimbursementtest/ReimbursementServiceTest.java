@@ -1,0 +1,46 @@
+package com.revature.reimbursementtest;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
+import com.revature.model.Reimbursement;
+import com.revature.repository.ReimbursementRepositoryImpl;
+import com.revature.service.ReimbursementService;
+
+public class ReimbursementServiceTest {
+	@InjectMocks
+	private static ReimbursementService reimbursementService;
+
+	@Mock
+	private ReimbursementRepositoryImpl reimbursementRepositoryImpl;
+
+	@BeforeClass
+	public static void setup() {
+		reimbursementService = new ReimbursementService();
+	}
+
+	@Before
+	public void beforeSetup() {
+		MockitoAnnotations.openMocks(this);
+	}
+
+	@Test
+	public void testReimbursementServiceFindAll() {
+		ArrayList<Reimbursement> myReimbursements = new ArrayList<>(Arrays.asList(new Reimbursement(1, 2000, 3, "denied", "none", 1),
+				new Reimbursement(12, 350, 1, "pending", "none", 0), new Reimbursement(3, 99999, 15, "approved","none",2)));
+
+		Mockito.when(reimbursementRepositoryImpl.findAll()).thenReturn(myReimbursements);
+
+		Assert.assertEquals(myReimbursements, reimbursementService.findAll());
+
+	}
+}
