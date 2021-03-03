@@ -264,39 +264,73 @@ public class RequestHelper {
 			float amount = Float.parseFloat(request.getParameter("amount"));
 			String reciept = request.getParameter("reciept");
 
+			HttpSession session17 = request.getSession(false);
+			int emp_id = employeeService.findEmployeeIdByUsername((String) session17.getAttribute("useremail"));
+			
 			// need to get the employee id from session somehow
-			reimbursementService.insert(new Reimbursement(0, amount, 1, "pending", reciept, 0));
-			// response.sendRedirect("http://localhost:8080/TRMS/employeeHome.html");
+			reimbursementService.insert(new Reimbursement(0, amount, emp_id, "pending", reciept, 0));
+			response.sendRedirect("http://localhost:8080/TRMS/employeeHome.html");
+			break;
 
 		case "/Manager/insertReimbursement":
 
 			System.out.println("insert reimbursement!!!!!");
 			amount = Float.parseFloat(request.getParameter("amount"));
 			reciept = request.getParameter("reciept");
+			
+			HttpSession session16 = request.getSession(false);
+			emp_id = employeeService.findEmployeeIdByUsername((String) session16.getAttribute("useremail"));
 
 			// need to get the employee id from session somehow
-			reimbursementService.insert(new Reimbursement(0, amount, 1, "pending", reciept, 0));
+			reimbursementService.insert(new Reimbursement(0, amount, emp_id, "pending", reciept, 0));
 			response.sendRedirect("http://localhost:8080/TRMS/managerHome.html");
+			break;
 
-		case "/updateAccountInfo/password":
+		case "/Employee/updateAccountInfo/password":
 			HttpSession session4 = request.getSession(false);
-			final String new_password = request.getParameter("password");
+			String new_password = request.getParameter("password");
 			String username = (String) session4.getAttribute("useremail");
 			System.out.println(username);
 			Employee employee2 = employeeService.findByUsername(username);
 			employee2.setPassword(new_password);
 			employeeService.update(employee2);
+			response.sendRedirect("http://localhost:8080/TRMS/employeeHome.html");
 			break;
 
-		case "/updateAccountInfo/fullname":
+		case "/Employee/updateAccountInfo/fullname":
 			HttpSession session5 = request.getSession(false);
-			final String new_name = request.getParameter("fullname");
+			String new_name = request.getParameter("fullname");
 			username = (String) session5.getAttribute("useremail");
 			System.out.println(username);
 			employee2 = employeeService.findByUsername(username);
 			employee2.setFull_name(new_name);
 			employeeService.update(employee2);
+			response.sendRedirect("http://localhost:8080/TRMS/employeeHome.html");
 			break;
+			
+		case "/Manager/updateAccountInfo/password":
+			HttpSession session24 = request.getSession(false);
+			new_password = request.getParameter("password");
+			username = (String) session24.getAttribute("useremail");
+			System.out.println(username);
+			employee2 = employeeService.findByUsername(username);
+			employee2.setPassword(new_password);
+			employeeService.update(employee2);
+			response.sendRedirect("http://localhost:8080/TRMS/managerHome.html");
+			break;
+
+		case "/Manager/updateAccountInfo/fullname":
+			HttpSession session25 = request.getSession(false);
+			new_name = request.getParameter("fullname");
+			username = (String) session25.getAttribute("useremail");
+			System.out.println(username);
+			employee2 = employeeService.findByUsername(username);
+			employee2.setFull_name(new_name);
+			employeeService.update(employee2);
+			response.sendRedirect("http://localhost:8080/TRMS/managerHome.html");
+			break;			
+			
+
 
 		case "/request/deny":
 			HttpSession session6 = request.getSession(false);
