@@ -26,7 +26,6 @@ public class ReimbursementService {
 	}
 
 	public void insert(Reimbursement reimbursement) {
-		System.out.println("INSERTING REIMBURSEMENT!!!!!!!!!");
 		this.reimbursementRepository.insert(reimbursement);
 	}
 
@@ -45,8 +44,6 @@ public class ReimbursementService {
 
 	public List<Reimbursement> findAllPendingForEmployee(String username) {
 
-		// List<Employee> employees = new ArrayList<>();
-		// employees = find
 
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		reimbursements = this.reimbursementRepository.findAll();
@@ -64,13 +61,10 @@ public class ReimbursementService {
 
 	public List<Reimbursement> findAllPendingForEmployeeById(int id) {
 
-		// List<Employee> employees = new ArrayList<>();
-		// employees = find
 
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		reimbursements = this.reimbursementRepository.findAll();
 
-		//int id = employeeService.findEmployeeIdByUsername(username);
 
 		reimbursements.removeIf(x -> x.getEmployee_id() != id);
 		reimbursements.removeIf(x -> !x.getStatus().equals("pending"));
@@ -86,8 +80,6 @@ public class ReimbursementService {
 		reimbursements = this.reimbursementRepository.findAll();
 
 		int id = employeeService.findEmployeeIdByUsername(username);
-		System.out.println(id);
-		System.out.println((reimbursements));
 
 		reimbursements.removeIf(x -> x.getEmployee_id() != id);
 		reimbursements.removeIf(x -> x.getStatus().equals("pending"));

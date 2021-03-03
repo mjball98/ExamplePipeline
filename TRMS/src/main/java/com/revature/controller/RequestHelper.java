@@ -29,11 +29,9 @@ public class RequestHelper {
 			throws ServletException, IOException {
 
 		final String URI = request.getRequestURI();
-		System.out.println("URI - " + URI);
 		String RESOURCE = URI.replace("/TRMS/api", "");
 		RESOURCE = RESOURCE.replace("/TRMS", "");
 		RESOURCE = RESOURCE.replace("/api", "");
-		System.out.println("RESOURCE !!!! " + RESOURCE);
 
 		HttpSession session = request.getSession();
 
@@ -60,11 +58,9 @@ public class RequestHelper {
 			return 0;
 
 		case "/viewReimbursements/Resolved":
-			System.out.println("VIEWING RESOLVED!!!!!");
 			response.sendRedirect("http://localhost:8080/TRMS/resolvedForEmployee.html");
 			return reimbursementService.findAllResolvedForEmployee((String) session.getAttribute("useremail"));
 		case "/Reimbursement/ResolvedForEmployee":
-			// HttpSession sessionR = request.getSession();
 
 			List<Reimbursement> r2 = new ArrayList<>();
 			r2 = reimbursementService.findAllResolvedForEmployee((String) session.getAttribute("useremail"));
@@ -75,17 +71,12 @@ public class RequestHelper {
 
 			String JSON = objectMapper.writeValueAsString(r2);
 			writer.write(JSON);
-			System.out.println(JSON);
 			return 0;
 
 		case "/viewReimbursements/managerResolved":
-			System.out.println("VIEWING RESOLVED!!!!!");
 			response.sendRedirect("http://localhost:8080/TRMS/resolvedForManager.html");
 			return reimbursementService.findAllResolvedForEmployee((String) session.getAttribute("useremail"));
 		case "/Reimbursement/ResolvedForManager":
-			// HttpSession sessionR = request.getSession();
-
-			// List<Reimbursement> r2 = new ArrayList<>();
 			r2 = reimbursementService.findAllResolvedForEmployee((String) session.getAttribute("useremail"));
 
 			PrintWriter writer4 = response.getWriter();
@@ -94,14 +85,12 @@ public class RequestHelper {
 
 			JSON = objectMapper4.writeValueAsString(r2);
 			writer4.write(JSON);
-			System.out.println(JSON);
 			return 0;
 
 		case "/viewReimbursements/Pending":
 			response.sendRedirect("http://localhost:8080/TRMS/pendingForEmployee.html");
 			return reimbursementService.findAllPendingForEmployee((String) session.getAttribute("useremail"));
 		case "/Reimbursement/PendingForEmployee":
-			// List<Reimbursement> r2 = new ArrayList<>();
 			r2 = reimbursementService.findAllPendingForEmployee((String) session.getAttribute("useremail"));
 
 			PrintWriter writer2 = response.getWriter();
@@ -110,14 +99,12 @@ public class RequestHelper {
 
 			JSON = objectMapper2.writeValueAsString(r2);
 			writer2.write(JSON);
-			System.out.println(JSON);
 			return 0;
 
 		case "/viewReimbursements/managerPending":
 			response.sendRedirect("http://localhost:8080/TRMS/pendingForManager.html");
 			return reimbursementService.findAllPendingForEmployee((String) session.getAttribute("useremail"));
 		case "/Reimbursement/PendingForManager":
-			// List<Reimbursement> r2 = new ArrayList<>();
 			r2 = reimbursementService.findAllPendingForEmployee((String) session.getAttribute("useremail"));
 
 			PrintWriter writer3 = response.getWriter();
@@ -126,7 +113,6 @@ public class RequestHelper {
 
 			JSON = objectMapper3.writeValueAsString(r2);
 			writer3.write(JSON);
-			System.out.println(JSON);
 			return 0;
 
 		case "/Employee/submitReimbursement":
@@ -148,7 +134,6 @@ public class RequestHelper {
 
 			JSON = objectMapper6.writeValueAsString(r6);
 			writer6.write(JSON);
-			System.out.println(JSON);
 			return 0;
 
 		case "/viewEmployeesAndManagers":
@@ -163,7 +148,6 @@ public class RequestHelper {
 
 			JSON = objectMapper7.writeValueAsString(e7);
 			writer7.write(JSON);
-			System.out.println(JSON);
 			return 0;
 
 		case "/viewPendingForEmployees":
@@ -188,16 +172,10 @@ public class RequestHelper {
 
 			JSON = objectMapper5.writeValueAsString(pending);
 			writer5.write(JSON);
-			System.out.println(JSON);
 			return 0;
 
-		// employees = employeeService.findEmployeesByManagerId(0);
-		// return
-		// reimbursementService.findAllPendingForEmployee(employeeService.findManagerNameByEmployeeUsername((String)
-		// session.getAttribute("useremail")));
 
 		case "/managerViewPendingForEmployee":
-			//request.setAttribute("employeeId", Integer.parseInt(request.getParameter("employeeId")));
 			session.setAttribute("employeeId", Integer.parseInt(request.getParameter("employeeId")));
 			response.sendRedirect("http://localhost:8080/TRMS/managerViewPendingForEmployee.html");
 			return 0;
@@ -212,7 +190,6 @@ public class RequestHelper {
 
 			JSON = objectMapper9.writeValueAsString(r9);
 			writer9.write(JSON);
-			System.out.println(JSON);
 			return 0;
 
 		case "/logout":
@@ -225,7 +202,6 @@ public class RequestHelper {
 			}
 			// RequestDispatcher dispatcher2 = request.getRequestDispatcher("/index.html");
 			// dispatcher2.forward(request, response);
-			System.out.println("Literally trying to do nothing");
 			return "Your session has been invalidated.";
 
 		case "/logout2":
@@ -238,7 +214,6 @@ public class RequestHelper {
 			}
 			RequestDispatcher dispatcher2 = request.getRequestDispatcher("/index.html");
 			dispatcher2.forward(request, response);
-			System.out.println("Literally trying to do nothing");
 			return "Your session has been invalidated.";
 		default:
 
@@ -254,34 +229,29 @@ public class RequestHelper {
 		final String URI = request.getRequestURI();
 		final String RESOURCE = URI.replace("/TRMS/api", "");
 
-		// System.out.println("IN HERE!!!!!");
 
 		switch (RESOURCE) {
 
 		case "/Employee/insertReimbursement":
 
-			System.out.println("insert reimbursement!!!!!");
 			float amount = Float.parseFloat(request.getParameter("amount"));
 			String reciept = request.getParameter("reciept");
 
 			HttpSession session17 = request.getSession(false);
 			int emp_id = employeeService.findEmployeeIdByUsername((String) session17.getAttribute("useremail"));
 			
-			// need to get the employee id from session somehow
 			reimbursementService.insert(new Reimbursement(0, amount, emp_id, "pending", reciept, 0));
 			response.sendRedirect("http://localhost:8080/TRMS/employeeHome.html");
 			break;
 
 		case "/Manager/insertReimbursement":
 
-			System.out.println("insert reimbursement!!!!!");
 			amount = Float.parseFloat(request.getParameter("amount"));
 			reciept = request.getParameter("reciept");
 			
 			HttpSession session16 = request.getSession(false);
 			emp_id = employeeService.findEmployeeIdByUsername((String) session16.getAttribute("useremail"));
 
-			// need to get the employee id from session somehow
 			reimbursementService.insert(new Reimbursement(0, amount, emp_id, "pending", reciept, 0));
 			response.sendRedirect("http://localhost:8080/TRMS/managerHome.html");
 			break;
@@ -290,7 +260,6 @@ public class RequestHelper {
 			HttpSession session4 = request.getSession(false);
 			String new_password = request.getParameter("password");
 			String username = (String) session4.getAttribute("useremail");
-			System.out.println(username);
 			Employee employee2 = employeeService.findByUsername(username);
 			employee2.setPassword(new_password);
 			employeeService.update(employee2);
@@ -301,7 +270,6 @@ public class RequestHelper {
 			HttpSession session5 = request.getSession(false);
 			String new_name = request.getParameter("fullname");
 			username = (String) session5.getAttribute("useremail");
-			System.out.println(username);
 			employee2 = employeeService.findByUsername(username);
 			employee2.setFull_name(new_name);
 			employeeService.update(employee2);
@@ -312,7 +280,6 @@ public class RequestHelper {
 			HttpSession session24 = request.getSession(false);
 			new_password = request.getParameter("password");
 			username = (String) session24.getAttribute("useremail");
-			System.out.println(username);
 			employee2 = employeeService.findByUsername(username);
 			employee2.setPassword(new_password);
 			employeeService.update(employee2);
@@ -323,7 +290,6 @@ public class RequestHelper {
 			HttpSession session25 = request.getSession(false);
 			new_name = request.getParameter("fullname");
 			username = (String) session25.getAttribute("useremail");
-			System.out.println(username);
 			employee2 = employeeService.findByUsername(username);
 			employee2.setFull_name(new_name);
 			employeeService.update(employee2);
@@ -340,7 +306,6 @@ public class RequestHelper {
 			String manager_name = employeeService.findFullnameByUsername(username);
 			int manager_id = managerService.findManagerIdByUsername(manager_name);
 
-			System.out.println(username);
 			Reimbursement reimbursement = reimbursementService.findById(r_id);
 			reimbursement.setStatus("denied");
 			reimbursement.setResolving_manager_id(manager_id);
@@ -356,7 +321,6 @@ public class RequestHelper {
 			manager_name = employeeService.findFullnameByUsername(username);
 			manager_id = managerService.findManagerIdByUsername(manager_name);
 
-			System.out.println(username);
 			reimbursement = reimbursementService.findById(r_id);
 			reimbursement.setStatus("approved");
 			reimbursement.setResolving_manager_id(manager_id);
@@ -373,7 +337,6 @@ public class RequestHelper {
 				// If the user credentials are valid, I'll grant the client a session
 				// and perhaps redirect the client to a new resource.
 
-//				response.sendRedirect("/ServletReview/Pages/home.html");
 
 				if (employeeService.isEmployeeManager(email, password)) {
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/managerHome.html");

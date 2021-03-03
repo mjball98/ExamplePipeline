@@ -13,8 +13,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class DispatcherServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	// private static final Logger LOG =
-	// LogManager.getLogger(DispatcherServlet.class);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -24,10 +22,6 @@ public class DispatcherServlet extends HttpServlet {
 		final String JSON = om.writeValueAsString(RequestHelper.processGet(request, response));
 		writer.write(JSON);
 
-		/*
-		 * This line of code does the same thing as the four lines of code above.
-		 */
-//		response.getWriter().write(new ObjectMapper().writeValueAsString(RequestHelper.processGet(request, response)));
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -34,7 +34,6 @@ public class EmployeeService {
 		for (Employee e : employees) {
 			returnMap.put(e.getFull_name(), managerService.findById(e.getManager_id()).getFull_name());
 		}
-		System.out.println(returnMap);
 		return returnMap;
 	}
 
@@ -57,14 +56,12 @@ public class EmployeeService {
 
 	public boolean isEmployeeManager(String username, String password) {
 		boolean manager = false;
-		System.out.println("CHECKING IF IT IS A MANAGER");
 
 		List<Employee> accounts = new ArrayList<>();
 		accounts = this.employeeRepository.findAll();
 		for (Employee e : accounts) {
 			if (e.getUsername().equals(username) && e.getPassword().equals(password)) {
 				if (e.isIs_manager()) {
-					System.out.println("SETTING MANAGER TO TRUE");
 					manager = true;
 				}
 			}
@@ -113,7 +110,6 @@ public class EmployeeService {
 		employees = this.employeeRepository.findAll();
 		employees.removeIf(x -> !x.getUsername().equals(email));
 
-		System.out.println(employees);
 
 		LOG.debug("The employee email: " + email
 				+ " was entered to find an Emloyee by Email. This is the employee found: " + employees.get(0));
@@ -125,20 +121,16 @@ public class EmployeeService {
 		employees = this.employeeRepository.findAll();
 		employees.removeIf(x -> !x.getUsername().equals(username));
 
-		System.out.println(employees);
 
 		return employees.get(0).getFull_name();
 	}
 
 	public String findManagerNameByEmployeeUsername(String username) {
 
-		System.out.println(username);
 		List<Employee> employees = new ArrayList<>();
 		employees = this.employeeRepository.findAll();
-		System.out.println(employees);
 		employees.removeIf(x -> !x.getUsername().equals(username));
 
-		System.out.println(employees);
 
 		// LOG.debug("The employee email: " + email + " was entered to find an Emloyee
 		// by Email. This is the employee found: "
@@ -147,13 +139,10 @@ public class EmployeeService {
 	}
 
 	public int findEmployeeIdByUsername(String username) {
-		System.out.println(username);
 		List<Employee> employees = new ArrayList<>();
 		employees = this.employeeRepository.findAll();
-		System.out.println(employees);
 		employees.removeIf(x -> !x.getUsername().equals(username));
 
-		System.out.println(employees);
 
 		return employees.get(0).getId();
 	}
