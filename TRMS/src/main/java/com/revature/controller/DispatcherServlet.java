@@ -19,7 +19,7 @@ public class DispatcherServlet extends HttpServlet {
 
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter writer = response.getWriter();
-		final String JSON = om.writeValueAsString(RequestHelper.processGet(request, response));
+		final String JSON = om.writeValueAsString(RequestHelperEC2.processGet(request, response));
 		writer.write(JSON);
 
 	}
@@ -27,7 +27,7 @@ public class DispatcherServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RequestHelper.processPost(request, response);
+		RequestHelperEC2.processPost(request, response);
 	}
 
 }

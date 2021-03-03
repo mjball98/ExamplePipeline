@@ -32,7 +32,7 @@ function grabAccountInfo() {
 
 			username.innerText = ('Username: ' + info.username)
 			password.innerText = ('Password: ' + info.password)
-			fullname.innerText = ('Full Name: ' + info.full_name)
+			fullname.innerText = ('Full Name: ' + info.fullname)
 
 			newInfo.append(username)
 			newInfo.append(password)
@@ -46,7 +46,9 @@ function grabAccountInfo() {
 
 	//Open my XMLHttpRequest, specifying my HTTP verb and the endpoint I would like to hit.
 
-	xhr.open('GET', 'http://localhost:8080/TRMS/hello') //readyState 1
+	//xhr.open('GET', 'http://localhost:8080/TRMS/hello') //readyState 1
+	//http://18.219.228.37:8088
+	xhr.open('GET', 'http://18.219.228.37:8088/TRMS/hello') //readyState 1
 	xhr.send() //readyState 2
 }
 
