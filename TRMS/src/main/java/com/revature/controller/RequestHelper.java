@@ -126,13 +126,14 @@ public class RequestHelper {
 			response.sendRedirect("http://localhost:8080/TRMS/managerViewAllResolved.html");
 			return reimbursementService.findAllResolved();
 		case "/Reimbursement/managerViewAllResolved":
-			Map<Reimbursement, String> r6 = reimbursementService.findAllResolved();
+			//Map<Reimbursement, String>
+			r2 = reimbursementService.findAllResolved();
 
 			PrintWriter writer6 = response.getWriter();
 			response.setContentType("application/json");
 			ObjectMapper objectMapper6 = new ObjectMapper();
 
-			JSON = objectMapper6.writeValueAsString(r6);
+			JSON = objectMapper6.writeValueAsString(r2);
 			writer6.write(JSON);
 			return 0;
 

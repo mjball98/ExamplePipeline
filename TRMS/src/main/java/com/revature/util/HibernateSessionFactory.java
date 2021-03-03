@@ -18,7 +18,6 @@ public class HibernateSessionFactory {
 	private static SessionFactory sessionFactory;
 
 	public static Session getSession() {
-		System.out.println("HIBERNATE");
 		if (sessionFactory == null) {
 			sessionFactory = new Configuration().configure()
 					.setProperty("hibernate.connection.url", "jdbc:postgresql://jan25instance.cbqll05ud0pv.us-east-2.rds.amazonaws.com:5432/postgres")

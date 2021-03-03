@@ -19,17 +19,17 @@ public class Driver {
 		//Card card1 = new Card(2, "Shiny New Pokemon", true, new Date(323733883838L));
 		//cardService.insert(card1);
 		
-		//Employee e1 = new Employee(1, "manager@email.com", "password", "Manager Name", 1, true);
+		//Employee e1 = new Employee(1, "base@email.com", "password", "Base Employee", 1, false);
 		//EmployeeService eService = new EmployeeService();
 		//eService.insert(e1);
 		
-		//Manager m1 = new Manager(1,0,"Dummy Manager");
+		//Manager m1 = new Manager(1,3,"Boss Manager");
 		//ManagerService mService = new ManagerService();
 		//mService.insert(m1);
 
 		//System.out.println(cardService.findAll());
 
-		Reimbursement r1 = new Reimbursement(1, 12345, 2, "approved", "no reciept", 1);
+		Reimbursement r1 = new Reimbursement(1, 3300, 4, "denied", "expensive reciept", 1);
 		ReimbursementService rService = new ReimbursementService();
 		rService.insert(r1);
 		

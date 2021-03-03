@@ -50,7 +50,6 @@
 		<property name="hibernate.hbm2ddl.auto">validate</property>
 		<!-- We need to tell Hibernate where the mapped resources are; it doesn't
 		auto detect the resources. -->
-		<mapping class="com.revature.model.Card"/>
 		<mapping class="com.revature.model.Employee"/>
 		<mapping class="com.revature.model.Manager"/>
 		<mapping class="com.revature.model.Reimbursement"/>

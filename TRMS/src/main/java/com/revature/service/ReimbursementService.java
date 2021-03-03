@@ -90,22 +90,13 @@ public class ReimbursementService {
 		return reimbursements;
 	}
 
-	public Map<Reimbursement, String> findAllResolved() {
+	public List<Reimbursement> findAllResolved() {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		reimbursements = this.reimbursementRepository.findAll();
 
 		reimbursements.removeIf(x -> x.getStatus().equals("pending"));
 
-		Map<Reimbursement, String> returnMap = new HashMap<Reimbursement, String>();
-		for (Reimbursement r : reimbursements) {
-			returnMap.put(r, "Manager Name: " + managerService.findById(r.getResolving_manager_id()).getFull_name());
-		}
-
-		LOG.debug(
-				"A manager wants to see all of the resolved reimbursements, and the manager which resolved it. This is the list of reimbursements: "
-						+ returnMap);
-
-		return returnMap;
+		return reimbursements;
 	}
 	
 	public void update(Reimbursement r1) {

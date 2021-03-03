@@ -22,6 +22,10 @@ function grabReimbursements() {
 			let r2 = (xhr.response)
 			//need to take the zero off, then can parse as json
 			let r3 = r2.slice(0,-1)
+			console.log('the ready state was 4 and the status was 200')
+			console.log(r3)
+			
+			let res = JSON.parse(r3)
 			//console.log(typeof(r2))
 			
 			
@@ -29,12 +33,35 @@ function grabReimbursements() {
 			
 			
 			
-			//console.log(res[0])
-			//console.log(res[0].amount)
+			console.log(res[0])
+			console.log(res[0].amount)
 
 			//We will add all our new cards as divs, so let's create a new div for each
-			div.append(r3)
-			
+			for (let r of res) {
+				let newR = document.createElement('div')
+				let id = document.createElement('p')
+				let amount = document.createElement('p')
+				let employee_id = document.createElement('p')
+				let status = document.createElement('p')
+				let reciept = document.createElement('p')
+				let resolving_manager_id = document.createElement('p')
+
+				id.innerText = ('Id: ' + r.id)
+				amount.innerText = ('Amount: ' + r.amount)
+				employee_id.innerText = ('Employee Id: ' + r.employee_id)
+				status.innerText = ('Status: '+ r.status)
+				reciept.innerText = ('Reciept: ' + r.reciept)
+				resolving_manager_id.innerText = ('Resolving Manager Id: ' + r.resolving_manager_id)
+
+				newR.append(id)
+				newR.append(amount)
+				newR.append(employee_id)
+				newR.append(status)
+				newR.append(reciept)
+				newR.append(resolving_manager_id)
+
+				div.append(newR)
+			}
 
 		}
 	}
