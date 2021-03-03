@@ -32,7 +32,7 @@ function grabAccountInfo() {
 
 			username.innerText = ('Username: ' + info.username)
 			password.innerText = ('Password: ' + info.password)
-			fullname.innerText = ('Full Name: ' + info.fullname)
+			fullname.innerText = ('Full Name: ' + info.full_name)
 
 			newInfo.append(username)
 			newInfo.append(password)
