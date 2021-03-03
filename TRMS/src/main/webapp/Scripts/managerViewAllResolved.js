@@ -68,7 +68,12 @@ function grabReimbursements() {
 
 	//Open my XMLHttpRequest, specifying my HTTP verb and the endpoint I would like to hit.
 
-	xhr.open('GET', 'http://localhost:8080/TRMS/api/Reimbursement/managerViewAllResolved') //readyState 1
+
+
+
+	//xhr.open('GET', 'http://localhost:8080/TRMS/api/Reimbursement/managerViewAllResolved') //readyState 1
+	//http://18.219.228.37:8088
+	xhr.open('GET', 'http://18.219.228.37:8088/TRMS/api/Reimbursement/managerViewAllResolved') //readyState 1
 	xhr.send() //readyState 2
 }
 

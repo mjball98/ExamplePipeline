@@ -21,27 +21,29 @@ function grabReimbursements() {
 			//JSON.parse is a convenience function for parsing JSON as a JavaScript object
 			let r2 = (xhr.response)
 			//need to take the zero off, then can parse as json
-			let r3 = r2.slice(0,-1)
+			let r3 = r2.slice(0, -1)
 			//console.log(typeof(r2))
-			
-			
+
+
 			//let res = r2.split('},')
-			
-			
-			
+
+
+
 			//console.log(res[0])
 			//console.log(res[0].amount)
 
 			//We will add all our new cards as divs, so let's create a new div for each
 			div.append(r3)
-			
+
 
 		}
 	}
 
 	//Open my XMLHttpRequest, specifying my HTTP verb and the endpoint I would like to hit.
 
-	xhr.open('GET', 'http://localhost:8080/TRMS/api/Reimbursement/viewEmployeesAndManagers') //readyState 1
+	//xhr.open('GET', 'http://localhost:8080/TRMS/api/Reimbursement/viewEmployeesAndManagers') //readyState 1
+	//http://18.219.228.37:8088
+	xhr.open('GET', 'http://18.219.228.37:8088/TRMS/api/Reimbursement/viewEmployeesAndManagers') //readyState 1
 	xhr.send() //readyState 2
 }
 
