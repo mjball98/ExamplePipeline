@@ -1,6 +1,5 @@
-# PROJECT NAME
+# Expense Reimbursement System
 
-Expense Reimbursement System
 
 ## Project Description
 
