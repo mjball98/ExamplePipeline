@@ -69,5 +69,6 @@ git clone https://github.com/mjball98/TRMS.git
 
 ## License
 
-This project uses the following license: [<license_name>](<link>).
+Open-source. For demo purposes. Not for commercial use.
+
 
